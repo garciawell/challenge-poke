@@ -1,7 +1,6 @@
-const theme = {
-  appDrawer: {
-    width: 225,
-  },
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -12,12 +11,14 @@ const theme = {
     },
   },
   palette: {
-    primary: {
-      main: '#f44336',
-    },
     common: {
       black: '#181818',
-      white: '#fff',
+    },
+    primary: {
+      light: '#da6e43',
+      main: '#7a6a9e',
+      dark: '#92330e',
+      contrastText: '#fff',
     },
     secondary: {
       light: '#36dfb1',
@@ -29,6 +30,6 @@ const theme = {
       main: '#f44336',
     },
   },
-};
+});
 
 export default theme;

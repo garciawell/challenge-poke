@@ -1,9 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
-import todos from './modules/todos/saga';
+import pokemons from './modules/pokemons/saga';
 
 export default function* root() {
-  yield all([
-    fork(todos),
-    // fork(dynamics),
-  ]);
+  yield all([fork(pokemons)]);
 }

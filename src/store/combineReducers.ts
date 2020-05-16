@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
-import todosReducer, {
-  ITodoState,
-  initialTodoState,
-} from './modules/todos/reducer';
+import pokemonsReducer, {
+  IPokemonState,
+  INITIAL_STATE_POKE,
+} from './modules/pokemons/reducer';
 
 export interface IState {
-  todos: ITodoState;
+  pokemons: IPokemonState;
 }
 
 export const initialState: IState = {
-  todos: initialTodoState,
+  pokemons: INITIAL_STATE_POKE,
 };
 
 export default combineReducers({
-  todos: todosReducer,
+  pokemons: pokemonsReducer,
 });
