@@ -1,23 +1,30 @@
-import { ITodoItem } from './models';
+import { IPokeModel } from './models';
 
-export enum TodosActionTypes {
-  ADDED_TODOS = 'todos/added',
+export enum PokeActionTypes {
+  GET_POKE = 'pokemon/GET_POKE',
+  GET_POKE_SUCCESS = 'pokemon/GET_POKE_SUCCESS',
 }
 
-export interface IAddedTodoAction {
-  type: TodosActionTypes.ADDED_TODOS;
-  payload: {
-    todo: ITodoItem;
-  };
+export interface IGetPoke {
+  type: PokeActionTypes.GET_POKE;
 }
 
-export function addedTodo(todo: ITodoItem): IAddedTodoAction {
+export interface IGetPokeSuccess {
+  type: PokeActionTypes.GET_POKE_SUCCESS;
+  payload: IPokeModel;
+}
+
+export function getPokes(): IGetPoke {
   return {
-    type: TodosActionTypes.ADDED_TODOS,
-    payload: {
-      todo,
-    },
+    type: PokeActionTypes.GET_POKE,
   };
 }
 
-export type TodosAction = IAddedTodoAction;
+export function getPokesSuccess(data: IPokeModel): IGetPokeSuccess {
+  return {
+    type: PokeActionTypes.GET_POKE_SUCCESS,
+    payload: data,
+  };
+}
+
+export type PokeAction = IGetPoke | IGetPokeSuccess;

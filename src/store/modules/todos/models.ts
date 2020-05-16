@@ -1,6 +1,6 @@
-export interface ITodoItem {
-  id: number;
-  description: string;
+export interface IPokeModel {
+  name: string;
+  url: string;
 }
 
 export enum ApiStatus {

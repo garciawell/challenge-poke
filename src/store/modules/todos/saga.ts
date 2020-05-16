@@ -1,18 +1,22 @@
-import { call, takeLatest } from 'redux-saga/effects';
+import { call, takeLatest, put } from 'redux-saga/effects';
 
 import api from '../../../services/api';
 
-import { TodosActionTypes } from './actions';
+import { PokeActionTypes } from './actions';
 
-export function* sendUsers() {
+export function* getPokes() {
   try {
-    console.log('GARCIA WELLL');
-    yield call(api.get, '/users');
+    const { data } = yield call(api.get, '/pokemon');
+
+    yield put({
+      type: PokeActionTypes.GET_POKE_SUCCESS,
+      payload: data.results,
+    });
   } catch (err) {
     //
   }
 }
 
 export default function* saga() {
-  yield takeLatest(TodosActionTypes.ADDED_TODOS, sendUsers);
+  yield takeLatest(PokeActionTypes.GET_POKE, getPokes);
 }

@@ -1,21 +1,21 @@
 import produce from 'immer';
-import { ApiStatus, ITodoItem } from './models';
-import { TodosAction, TodosActionTypes } from './actions';
+import { ApiStatus, IPokeModel } from './models';
+import { PokeAction, PokeActionTypes } from './actions';
 
 export const initialTodoState: ITodoState = {
   loadingStatus: ApiStatus.LOADING,
   addingStatus: ApiStatus.LOADED,
-  todos: [],
+  pokes: [],
 };
 
 export default function todosReducer(
   state: ITodoState = initialTodoState,
-  action: TodosAction,
+  action: PokeAction,
 ) {
   return produce(state, (draft) => {
     switch (action.type) {
-      case TodosActionTypes.ADDED_TODOS:
-        draft.todos.push(action.payload.todo);
+      case PokeActionTypes.GET_POKE_SUCCESS:
+        draft.pokes.push(action.payload);
         break;
       default:
     }
@@ -25,5 +25,5 @@ export default function todosReducer(
 export interface ITodoState {
   loadingStatus: ApiStatus;
   addingStatus: ApiStatus;
-  todos: ITodoItem[];
+  pokes: IPokeModel[];
 }

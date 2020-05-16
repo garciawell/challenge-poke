@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addedTodo } from 'store/modules/todos/actions';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPokes } from 'store/modules/todos/actions';
+import { IState } from 'store/combineReducers';
 import { Container } from './styles';
 
 const Dashboard: React.FC = () => {
+  const pokes = useSelector<IState>((state) => state.todos.pokes);
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(
-      addedTodo({
-        description: 'OLÀ PESSOAS',
-        id: 22,
-      }),
-    );
-  });
+  const actionGetPokes = useCallback(() => {
+    dispatch(getPokes());
+  }, [dispatch]);
 
-  return <Container>Dashboard</Container>;
+  useEffect(() => {
+    actionGetPokes();
+  }, [actionGetPokes]);
+
+  console.log('pokes');
+  return <Container>sdsd</Container>;
 };
 
 export default Dashboard;
