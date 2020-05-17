@@ -7,12 +7,9 @@ import sagas from './combineSagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = composeWithDevTools({});
+// const composeEnhancers = composeWithDevTools({});
 
-const store = createStore(
-  reducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware)),
-);
+const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(sagas);
 

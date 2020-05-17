@@ -11,3 +11,15 @@ export function mockListPokemons() {
     abilities: [],
   }));
 }
+
+// export function formatTeste() {
+//   return Array.from({ length: 20 }, () => ({
+//     id: uuid(),
+//     name: 'Pokemon',
+//     url: 'url',
+//     img: 'img',
+//     types: [],
+//     stats: [],
+//     abilities: [],
+//   }));
+// }
