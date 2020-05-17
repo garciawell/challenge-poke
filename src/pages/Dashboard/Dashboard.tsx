@@ -27,6 +27,14 @@ const Dashboard: React.FC = () => {
     (state) => state.pokemons.loadingStatus,
   );
 
+  const isSearchFilled = useSelector<IState, boolean>(
+    (state) => state.pokemons.isSearchFilled,
+  );
+
+  const notFoundItems = useSelector<IState, string>(
+    (state) => state.pokemons.error,
+  );
+
   const dispatch = useDispatch();
 
   const actionGetPokes = useCallback(() => {
@@ -66,13 +74,16 @@ const Dashboard: React.FC = () => {
             <CardPokemon data={data} loading={loading} />
           ))}
         </Box>
-        <PaginationStyled
-          showFirstButton
-          showLastButton
-          count={Math.ceil(pagination / 20)}
-          onChange={handlePagination}
-          disabled={loading === 'loading'}
-        />
+        {notFoundItems && <h2>Nenhum Resultado Encontrado</h2>}
+        {!isSearchFilled && (
+          <PaginationStyled
+            showFirstButton
+            showLastButton
+            count={Math.ceil(pagination / 20)}
+            onChange={handlePagination}
+            disabled={loading === 'loading'}
+          />
+        )}
       </Container>
     </WrapperBg>
   );

@@ -29,10 +29,33 @@ export function* getPokes({ payload }: any) {
       payload: { pagination: data.count, data: getOnlyData },
     });
   } catch (err) {
-    //
+    yield put({
+      type: PokeActionTypes.GET_POKE_FAILURE,
+    });
+  }
+}
+
+export function* searchPokes({ payload }: any) {
+  try {
+    const { data } = yield call(api.get, `/pokemon/${payload}`);
+    yield delay(1000);
+    yield put({
+      type: PokeActionTypes.SEARCH_POKE_SUCCESS,
+      payload: {
+        id: data.id,
+        name: data.name,
+        img: data.sprites.front_default,
+        types: data.types,
+      },
+    });
+  } catch (err) {
+    yield put({
+      type: PokeActionTypes.SEARCH_POKE_FAILURE,
+    });
   }
 }
 
 export default function* saga() {
   yield takeLatest(PokeActionTypes.GET_POKE, getPokes);
+  yield takeLatest(PokeActionTypes.SEARCH_POKE, searchPokes);
 }

@@ -29,5 +29,4 @@ export interface IPokeModel {
 export enum ApiStatus {
   LOADING = 'loading',
   LOADED = 'loaded',
-  FAILED = 'failed',
 }

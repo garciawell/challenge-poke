@@ -9,6 +9,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   errors?: string | undefined;
   touched?: boolean;
+  label?: string;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -20,6 +21,8 @@ const Input: React.FC<IInputProps> = ({
   errors,
   value,
   touched,
+  placeholder,
+  label,
 }) => {
   function isErrorIcon() {
     if (!errors) {
@@ -44,10 +47,11 @@ const Input: React.FC<IInputProps> = ({
         name={name}
         onChange={onChange}
         onBlur={onBlur}
+        label={label}
         error={!!touched && !!errors}
         value={value}
         fullWidth
-        placeholder="What pokémon are you looking for?"
+        placeholder={placeholder}
         variant="outlined"
         InputProps={{
           startAdornment: (
