@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { IPokeModel, IPokeTypes } from 'store/modules/pokemons/models';
 import { IState } from 'store/combineReducers';
+import { formatTextToCapitalizeWithTrace } from 'utils/tools';
+
 import {
   Container,
   List,
@@ -51,7 +53,8 @@ const ModalDetailPokemon: React.FC = () => {
           <List>
             {detailPokemon.stats.map((item) => (
               <li>
-                {item.stat.name} {item.base_stat}
+                {formatTextToCapitalizeWithTrace(item.stat.name)}{' '}
+                {item.base_stat}
                 <Bar size={item.base_stat} />
               </li>
             ))}

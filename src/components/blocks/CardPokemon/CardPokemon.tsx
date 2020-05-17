@@ -4,6 +4,7 @@ import { Creators as PokemonsActions } from 'store/modules/pokemons/actions';
 import { Creators as SharedActions } from 'store/modules/shared/actions';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { useDispatch } from 'react-redux';
+import { formatTextToCapitalize } from 'utils/tools';
 import { Wrapper, Title, NumberStyled } from './styles';
 import TypesPokemon from '../TypesPokemon';
 
@@ -49,7 +50,7 @@ const CardPokemon: React.FC<ICardProps> = ({ data, loading }) => {
         {loading === 'loading' ? (
           <Skeleton animation="wave" variant="text" width={125} height={43} />
         ) : (
-          <Title as="h2">{data.name}</Title>
+          <Title as="h2">{formatTextToCapitalize(data.name)}</Title>
         )}
 
         <TypesPokemon loading={loading} data={data.types} />

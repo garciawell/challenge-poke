@@ -4,7 +4,7 @@ import { Container, ModalStyled } from './styles';
 
 interface IModal {
   open: boolean;
-  handleClose: any;
+  handleClose: (details: boolean) => void;
 }
 
 const Modal: React.FC<IModal> = ({ open, children, handleClose }) => {
