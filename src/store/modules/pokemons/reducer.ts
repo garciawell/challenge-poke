@@ -1,4 +1,5 @@
 import produce from 'immer';
+import { mockListPokemons } from 'utils/tools';
 import { ApiStatus, IPokeModel } from './models';
 import { IPokeAction, PokeActionTypes } from './actions';
 
@@ -10,7 +11,7 @@ export interface IPokemonState {
 
 export const INITIAL_STATE_POKE: IPokemonState = {
   loadingStatus: ApiStatus.LOADING,
-  pokes: [],
+  pokes: mockListPokemons(),
   pages: 0,
 };
 

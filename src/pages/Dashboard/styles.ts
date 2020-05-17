@@ -1,85 +1,46 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { Pagination } from '@material-ui/lab';
+import { Text } from 'components/elements';
+import { Grid } from '@material-ui/core';
+import WatermarkLarge from 'assets/img/watermark-pokeball-large.svg';
 
-interface IWrapperProps {
-  color: string | undefined;
-}
-
-export const Container = styled.div`
+export const Box = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px 10px;
-  text-align: center;
+  grid-gap: 15px 15px;
 
   > div {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: space-between;
   }
 `;
 
-export const Title = styled.div`
-  font-size: 60px;
-  font-weight: bold;
-  color: #fff;
-  text-transform: capitalize;
+export const Container = styled.div`
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 35px 0;
 `;
 
-export const Wrapper = styled.div<IWrapperProps>`
-border-radius: 25px;
+export const Header = styled(Grid)`
+  margin-bottom: 35px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+`;
 
-  ${(props) =>
-    props.color === 'grass' &&
-    css`
-      background: #8bbe8a;
-    `}
-  ${(props) =>
-    props.color === 'fire' &&
-    css`
-      background: #ffa756;
-    `}
-  ${(props) =>
-    props.color === 'water' &&
-    css`
-      background: #58abf6;
-    `}
-  ${(props) =>
-    props.color === 'bug' &&
-    css`
-      background: #8cb330;
-    `}
-  ${(props) =>
-    props.color === 'normal' &&
-    css`
-      background: #b5b9c4;
-    `}
-  ${(props) =>
-    props.color === 'poison' &&
-    css`
-      background: #9f6e97;
-    `}
-  ${(props) =>
-    props.color === 'electric' &&
-    css`
-      background: #f2cb55;
-    `}
-  ${(props) =>
-    props.color === 'ground' &&
-    css`
-      background: #f78551;
-    `}
-  ${(props) =>
-    props.color === 'fairy' &&
-    css`
-      background: #eba8c3;
-    `}
-  ${(props) =>
-    props.color === 'fighting' &&
-    css`
-      background: #eb4971;
-    `}
-  ${(props) =>
-    props.color === 'rock' &&
-    css`
-      background: #6f6e78;
-    `}
+export const PaginationStyled = styled(Pagination)`
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const TitleStyled = styled(Text)`
+  font-size: 42px;
+  color: #17171b;
+`;
+
+export const WrapperBg = styled.div`
+  background: url(${WatermarkLarge}) left bottom -200px no-repeat;
+  height: 100%;
 `;

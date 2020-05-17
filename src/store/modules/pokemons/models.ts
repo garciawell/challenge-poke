@@ -1,7 +1,19 @@
 export interface IPokeTypes {
   slot: number;
   type: {
-    name: string;
+    name:
+      | 'grass'
+      | 'fire'
+      | 'water'
+      | 'bug'
+      | 'normal'
+      | 'poison'
+      | 'electric'
+      | 'ground'
+      | 'fairy'
+      | 'fighting'
+      | 'flying'
+      | 'rock';
     url: string;
   };
 }

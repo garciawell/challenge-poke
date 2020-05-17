@@ -13,10 +13,11 @@ const theme = createMuiTheme({
   palette: {
     common: {
       black: '#181818',
+      white: '#fff',
     },
     primary: {
-      light: '#da6e43',
-      main: '#7a6a9e',
+      light: '#FFCAA6',
+      main: '#FD7D24',
       dark: '#92330e',
       contrastText: '#fff',
     },
@@ -28,6 +29,9 @@ const theme = createMuiTheme({
     },
     error: {
       main: '#f44336',
+    },
+    grey: {
+      '600': '#747476',
     },
   },
 });

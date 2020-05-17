@@ -1,11 +1,19 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Pagination from '@material-ui/lab/Pagination';
 import { Creators as PokeActions } from 'store/modules/pokemons/actions';
 import { IState } from 'store/combineReducers';
-import { IPokeModel, IPokeTypes } from 'store/modules/pokemons/models';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { Container, Title, Wrapper } from './styles';
+import { IPokeModel } from 'store/modules/pokemons/models';
+import { Input } from 'components/elements';
+import CardPokemon from 'components/blocks/CardPokemon';
+import { Grid } from '@material-ui/core';
+import {
+  Box,
+  Container,
+  Header,
+  PaginationStyled,
+  TitleStyled,
+  WrapperBg,
+} from './styles';
 
 const Dashboard: React.FC = () => {
   const pokes = useSelector<IState, IPokeModel[]>(
@@ -36,43 +44,37 @@ const Dashboard: React.FC = () => {
     dispatch(PokeActions.getPokes(value));
   };
 
-  function getPrimaryColor(values: IPokeTypes[]): string | undefined {
-    const getPrimaryNameType = values.find((v) => v.slot === 1)?.type.name;
-
-    return getPrimaryNameType;
-  }
-
   return (
-    <>
+    <WrapperBg>
       <Container>
-        {pokes.map((item) => (
-          <Wrapper key={item.id} color={getPrimaryColor(item.types)}>
-            {loading === 'loading' ? (
-              <Skeleton variant="text" width={125} />
-            ) : (
-              <Title>{item.name}</Title>
-            )}
+        <Header container>
+          <Grid item xs={12} md={7}>
+            <TitleStyled variant="h2" size="h3">
+              Pokedéx
+            </TitleStyled>
 
-            {item.types.map((item) => (
-              <span>{item.type.name}</span>
-            ))}
-
-            {loading === 'loading' ? (
-              <Skeleton variant="rect" width={96} height={96} />
-            ) : (
-              <img src={item.img} alt={item.name} />
-            )}
-          </Wrapper>
-        ))}
+            <p>
+              Search for Pokémon by name or using the National Pokédex number
+            </p>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Input />
+          </Grid>
+        </Header>
+        <Box>
+          {pokes.map((data) => (
+            <CardPokemon data={data} loading={loading} />
+          ))}
+        </Box>
+        <PaginationStyled
+          showFirstButton
+          showLastButton
+          count={Math.ceil(pagination / 20)}
+          onChange={handlePagination}
+          disabled={loading === 'loading'}
+        />
       </Container>
-      <Pagination
-        showFirstButton
-        showLastButton
-        count={Math.ceil(pagination / 20)}
-        onChange={handlePagination}
-        disabled={loading === 'loading'}
-      />
-    </>
+    </WrapperBg>
   );
 };
 
