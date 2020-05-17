@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Creators as PokeActions } from 'store/modules/pokemons/actions';
 import { IState } from 'store/combineReducers';
 import { IPokeModel } from 'store/modules/pokemons/models';
-import { Input } from 'components/elements';
+import { SearchPokemon } from 'components/blocks';
 import CardPokemon from 'components/blocks/CardPokemon';
 import { Grid } from '@material-ui/core';
 import {
@@ -58,7 +58,7 @@ const Dashboard: React.FC = () => {
             </p>
           </Grid>
           <Grid item xs={12} md={5}>
-            <Input />
+            <SearchPokemon />
           </Grid>
         </Header>
         <Box>

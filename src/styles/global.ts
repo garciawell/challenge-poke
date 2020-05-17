@@ -20,8 +20,10 @@ export default createGlobalStyle`
 
   }
 
-  h1, h2, h3, h4, h5, h6, strong{
-    font-weight: 500;
+  h1, h2, h3, h4, h5, h6{
+      font-weight: bold !important;
+      font-family: 'Montserrat', sans-serif !important;
+
   }
   button{
     cursor:pointer
