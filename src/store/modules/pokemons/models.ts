@@ -27,7 +27,9 @@ export interface IPokeStats {
 }
 
 export interface IPokeAbilities {
-  name: string;
+  ability: {
+    name: string;
+  };
 }
 
 export interface IPokeModel {

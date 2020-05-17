@@ -11,6 +11,7 @@ export interface IPokemonState {
   error: string;
   stats: IPokeStats[];
   abilities: IPokeAbilities[];
+  currentPokemon: any;
 }
 
 export const INITIAL_STATE_POKE: IPokemonState = {
@@ -21,6 +22,7 @@ export const INITIAL_STATE_POKE: IPokemonState = {
   error: '',
   stats: [],
   abilities: [],
+  currentPokemon: {},
 };
 
 export default function pokemonsReducer(
@@ -62,6 +64,13 @@ export default function pokemonsReducer(
         draft.loadingStatus = ApiStatus.LOADED;
         draft.pokes = [];
         draft.error = 'Not Found';
+        break;
+
+      case PokeActionTypes.GET_POKE_INF:
+        draft.currentPokemon =
+          action.payload.id === 'CLEAR'
+            ? {}
+            : draft.pokes.find((item) => item.id === action.payload.id);
         break;
       default:
     }

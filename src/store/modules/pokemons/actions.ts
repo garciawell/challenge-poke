@@ -5,9 +5,11 @@ export enum PokeActionTypes {
   GET_POKE_SUCCESS = 'pokemon/GET_POKE_SUCCESS',
   GET_POKE_FAILURE = 'pokemon/GET_POKE_FAILURE',
 
-  SEARCH_POKE = 'search/SEARCH_POKE',
-  SEARCH_POKE_SUCCESS = 'search/SEARCH_POKE_SUCCESS',
-  SEARCH_POKE_FAILURE = 'search/SEARCH_POKE_FAILURE',
+  SEARCH_POKE = 'pokemon/SEARCH_POKE',
+  SEARCH_POKE_SUCCESS = 'pokemon/SEARCH_POKE_SUCCESS',
+  SEARCH_POKE_FAILURE = 'pokemon/SEARCH_POKE_FAILURE',
+
+  GET_POKE_INF = 'pokemon/GET_POKE_INF',
 }
 
 interface IGetPoke {
@@ -38,6 +40,13 @@ interface ISearchPokeSuccess {
 }
 interface ISearchPokeFailure {
   type: PokeActionTypes.SEARCH_POKE_FAILURE;
+}
+
+interface IGetPokeInf {
+  type: PokeActionTypes.GET_POKE_INF;
+  payload: {
+    id: number | string;
+  };
 }
 
 export const Creators = {
@@ -76,6 +85,12 @@ export const Creators = {
       type: PokeActionTypes.SEARCH_POKE_FAILURE,
     };
   },
+  getInfPoke(id: number | string): IGetPokeInf {
+    return {
+      type: PokeActionTypes.GET_POKE_INF,
+      payload: { id },
+    };
+  },
 };
 
 export type IPokeAction =
@@ -84,4 +99,5 @@ export type IPokeAction =
   | IGetPokeFailure
   | ISearchPokeSuccess
   | ISearchPoke
-  | ISearchPokeFailure;
+  | ISearchPokeFailure
+  | IGetPokeInf;

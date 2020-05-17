@@ -19,7 +19,7 @@ export interface IWrapperProps {
   loading: string;
 }
 
-const bgType = {
+export const bgType = {
   grass: css`
     background-color: #8bbe8a;
   `,
@@ -87,14 +87,22 @@ export const Wrapper = styled.div<IWrapperProps>`
     `}
 
   ${(props) => bgType[props.color || 'default']}
+  cursor:pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const Title = styled(Text)`
-  font-size: 32px;
+  font-size: 30px;
   font-weight: bold;
   color: #fff;
   text-transform: capitalize;
   text-shadow: 1px 1px 2px rgba(150, 150, 150, 0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const NumberStyled = styled.span`
   color: rgba(0, 0, 0, 0.5);

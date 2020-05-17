@@ -65,7 +65,7 @@ const SearchPokemon: React.FC = () => {
           <Input
             type="text"
             name="search"
-            placeholder="What pokémon are you looking for?"
+            placeholder="What Pokémon are you looking for?"
             onChange={(e) => customHandleChange(e, handleChange, submitForm)}
             value={values.search}
             touched={touched.search}

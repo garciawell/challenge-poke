@@ -1,13 +1,15 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Creators as PokeActions } from 'store/modules/pokemons/actions';
+import { Creators as SharedActions } from 'store/modules/shared/actions';
 import { IState } from 'store/combineReducers';
 import { IPokeModel } from 'store/modules/pokemons/models';
-import { SearchPokemon } from 'components/blocks';
+import { SearchPokemon, ModalDetailPokemon } from 'components/blocks';
+import { Modal } from 'components/elements';
 import CardPokemon from 'components/blocks/CardPokemon';
-import { Grid } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import {
-  Box,
+  Box as BoxStyled,
   Container,
   Header,
   PaginationStyled,
@@ -18,6 +20,10 @@ import {
 const Dashboard: React.FC = () => {
   const pokes = useSelector<IState, IPokeModel[]>(
     (state) => state.pokemons.pokes,
+  );
+
+  const statusModal = useSelector<IState, boolean>(
+    (state) => state.shared.modal,
   );
   const pagination = useSelector<IState, number>(
     (state) => state.pokemons.pages,
@@ -52,40 +58,51 @@ const Dashboard: React.FC = () => {
     dispatch(PokeActions.getPokes(value));
   };
 
-  return (
-    <WrapperBg>
-      <Container>
-        <Header container>
-          <Grid item xs={12} md={7}>
-            <TitleStyled variant="h2" size="h3">
-              Pokedéx
-            </TitleStyled>
+  const handleCloseModal = useCallback(() => {
+    dispatch(PokeActions.getInfPoke('CLEAR'));
+    dispatch(SharedActions.handleModal(false));
+  }, [dispatch]);
 
-            <p>
-              Search for Pokémon by name or using the National Pokédex number
-            </p>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <SearchPokemon />
-          </Grid>
-        </Header>
-        <Box>
-          {pokes.map((data) => (
-            <CardPokemon key={data.id} data={data} loading={loading} />
-          ))}
-        </Box>
-        {notFoundItems && <h2>Nenhum Resultado Encontrado</h2>}
-        {!isSearchFilled && (
-          <PaginationStyled
-            showFirstButton
-            showLastButton
-            count={Math.ceil(pagination / 20)}
-            onChange={handlePagination}
-            disabled={loading === 'loading'}
-          />
-        )}
-      </Container>
-    </WrapperBg>
+  return (
+    <>
+      <WrapperBg>
+        <Container>
+          <Header container>
+            <Grid item xs={12} md={7}>
+              <TitleStyled variant="h2" size="h3">
+                Pokedéx
+              </TitleStyled>
+
+              <p>
+                Search for Pokémon by name or using the National Pokédex number
+              </p>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Box mt={2} />
+              <SearchPokemon />
+            </Grid>
+          </Header>
+          <BoxStyled>
+            {pokes.map((data) => (
+              <CardPokemon key={data.id} data={data} loading={loading} />
+            ))}
+          </BoxStyled>
+          {notFoundItems && <h2>Nenhum Resultado Encontrado</h2>}
+          {!isSearchFilled && (
+            <PaginationStyled
+              showFirstButton
+              showLastButton
+              count={Math.ceil(pagination / 20)}
+              onChange={handlePagination}
+              disabled={loading === 'loading'}
+            />
+          )}
+        </Container>
+      </WrapperBg>
+      <Modal open={statusModal} handleClose={handleCloseModal}>
+        <ModalDetailPokemon />
+      </Modal>
+    </>
   );
 };
 

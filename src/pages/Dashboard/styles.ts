@@ -6,7 +6,7 @@ import WatermarkLarge from 'assets/img/watermark-pokeball-large.svg';
 
 export const Box = styled.div`
   display: grid;
-  grid-template-columns: 320px 320px 320px 320px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 15px 15px;
 
   > div {
@@ -19,7 +19,7 @@ export const Box = styled.div`
 export const Container = styled.div`
   max-width: 1300px;
   margin: 0 auto;
-  padding: 35px 0;
+  padding: 35px 25px;
   width: 100%;
 `;
 
@@ -39,6 +39,7 @@ export const PaginationStyled = styled(Pagination)`
 export const TitleStyled = styled(Text)`
   font-size: 42px;
   color: #17171b;
+  margin-bottom: 10px;
 `;
 
 export const WrapperBg = styled.div`
