@@ -13,9 +13,17 @@ const TypesPokemon: React.FC<ITypesProps> = ({ data, loading }) => {
     <Box>
       {data.map((item) => {
         return loading === 'loading' ? (
-          <Skeleton animation="wave" variant="rect" width={50} height={25} />
+          <Skeleton
+            key={item.type.name}
+            animation="wave"
+            variant="rect"
+            width={50}
+            height={25}
+          />
         ) : (
-          <Label color={item.type.name}>{item.type.name}</Label>
+          <Label key={item.type.name} color={item.type.name}>
+            {item.type.name}
+          </Label>
         );
       })}
     </Box>

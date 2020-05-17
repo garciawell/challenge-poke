@@ -1,9 +1,13 @@
+import { uuid } from 'uuidv4';
+
 export function mockListPokemons() {
-  return Array(20).fill({
-    id: Math.floor(Math.random() * (20 - 1 + 1) + 1),
+  return Array.from({ length: 20 }, () => ({
+    id: uuid(),
     name: 'Pokemon',
     url: 'url',
     img: 'img',
     types: [],
-  });
+    stats: [],
+    abilities: [],
+  }));
 }

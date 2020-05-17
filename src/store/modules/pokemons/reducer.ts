@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { mockListPokemons } from 'utils/tools';
-import { ApiStatus, IPokeModel } from './models';
+import { ApiStatus, IPokeModel, IPokeStats, IPokeAbilities } from './models';
 import { IPokeAction, PokeActionTypes } from './actions';
 
 export interface IPokemonState {
@@ -9,6 +9,8 @@ export interface IPokemonState {
   pages: number;
   isSearchFilled: boolean;
   error: string;
+  stats: IPokeStats[];
+  abilities: IPokeAbilities[];
 }
 
 export const INITIAL_STATE_POKE: IPokemonState = {
@@ -17,6 +19,8 @@ export const INITIAL_STATE_POKE: IPokemonState = {
   pages: 0,
   isSearchFilled: false,
   error: '',
+  stats: [],
+  abilities: [],
 };
 
 export default function pokemonsReducer(

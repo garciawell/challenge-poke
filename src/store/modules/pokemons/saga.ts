@@ -22,6 +22,8 @@ export function* getPokes({ payload }: any) {
       name: item.data.name,
       img: item.data.sprites.front_default,
       types: item.data.types,
+      stats: item.data.stats,
+      abilities: item.data.abilities,
     }));
 
     yield put({
@@ -46,6 +48,8 @@ export function* searchPokes({ payload }: any) {
         name: data.name,
         img: data.sprites.front_default,
         types: data.types,
+        stats: data.data,
+        abilities: data.abilities,
       },
     });
   } catch (err) {

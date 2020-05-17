@@ -71,7 +71,7 @@ const Dashboard: React.FC = () => {
         </Header>
         <Box>
           {pokes.map((data) => (
-            <CardPokemon data={data} loading={loading} />
+            <CardPokemon key={data.id} data={data} loading={loading} />
           ))}
         </Box>
         {notFoundItems && <h2>Nenhum Resultado Encontrado</h2>}

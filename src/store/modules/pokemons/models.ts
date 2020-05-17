@@ -18,12 +18,26 @@ export interface IPokeTypes {
   };
 }
 
+export interface IPokeStats {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+  };
+}
+
+export interface IPokeAbilities {
+  name: string;
+}
+
 export interface IPokeModel {
   name: string;
   url: string;
-  id: number;
+  id: number | string;
   img: string;
   types: IPokeTypes[];
+  stats: IPokeStats[];
+  abilities: IPokeAbilities[];
 }
 
 export enum ApiStatus {
