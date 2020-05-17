@@ -48,6 +48,14 @@ Para rodar o storybook em ambiente de desenvolvimento, executar o comando
 npm storybook  ou yarn storybook
 ```
 
+## Executar Teste
+
+Para rodar os teste em ambiente de desenvolvimento, executar o comando
+
+```
+npm test  ou yarn test
+```
+
 
 ## Demo Online
 
