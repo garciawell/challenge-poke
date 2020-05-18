@@ -42,7 +42,7 @@ const ModalDetailPokemon: React.FC = () => {
             </CustomSubTitle>
             <ListAbilities color={getPrimaryColor(detailPokemon.types)}>
               {detailPokemon.abilities.map((item) => (
-                <li>{item.ability.name}</li>
+                <li>{formatTextToCapitalizeWithTrace(item.ability.name)}</li>
               ))}
             </ListAbilities>
           </Relative>
