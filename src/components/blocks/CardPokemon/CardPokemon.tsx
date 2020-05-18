@@ -4,7 +4,7 @@ import { Creators as PokemonsActions } from 'store/modules/pokemons/actions';
 import { Creators as SharedActions } from 'store/modules/shared/actions';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { useDispatch } from 'react-redux';
-import { formatTextToCapitalize } from 'utils/tools';
+import { formatTextToCapitalize, padDigits } from 'utils/tools';
 import { Wrapper, Title, NumberStyled } from './styles';
 import TypesPokemon from '../TypesPokemon';
 
@@ -44,7 +44,7 @@ const CardPokemon: React.FC<ICardProps> = ({ data, loading }) => {
         {loading === 'loading' ? (
           <Skeleton animation="wave" variant="text" width={50} height={25} />
         ) : (
-          <NumberStyled>#{data.id}</NumberStyled>
+          <NumberStyled># {data.id && padDigits(data.id)}</NumberStyled>
         )}
 
         {loading === 'loading' ? (
@@ -60,7 +60,7 @@ const CardPokemon: React.FC<ICardProps> = ({ data, loading }) => {
         {loading === 'loading' ? (
           <Skeleton animation="wave" variant="circle" width={96} height={96} />
         ) : (
-          <img src={data.img} alt={data.name} />
+          <>{data.img && <img src={data.img} alt={data.name} />}</>
         )}
       </div>
     </Wrapper>

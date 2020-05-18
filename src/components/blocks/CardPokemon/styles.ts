@@ -103,6 +103,7 @@ export const Title = styled(Text)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 180px;
 `;
 export const NumberStyled = styled.span`
   color: rgba(0, 0, 0, 0.5);
