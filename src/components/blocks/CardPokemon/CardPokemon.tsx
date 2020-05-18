@@ -67,4 +67,4 @@ const CardPokemon: React.FC<ICardProps> = ({ data, loading }) => {
   );
 };
 
-export default CardPokemon;
+export default React.memo(CardPokemon);
