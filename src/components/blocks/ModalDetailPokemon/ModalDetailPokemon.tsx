@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { IPokeModel, IPokeTypes } from 'store/modules/pokemons/models';
 import { IState } from 'store/combineReducers';
-import { formatTextToCapitalizeWithTrace } from 'utils/tools';
+import { formatTextToCapitalizeWithTrace, sumValues } from 'utils/tools';
 
 import {
   Container,
@@ -59,6 +59,8 @@ const ModalDetailPokemon: React.FC = () => {
               </li>
             ))}
           </List>
+          <strong>Total: </strong>
+          {sumValues(detailPokemon.stats.map((item) => item.base_stat))}
         </Right>
       </Container>
     </>

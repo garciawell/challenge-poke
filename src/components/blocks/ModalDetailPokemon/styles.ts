@@ -26,6 +26,7 @@ interface IBarProps {
 
 export const List = styled.ul`
   margin-top: 35px;
+  margin-bottom: 15px;
   li {
     padding: 10px 0;
   }

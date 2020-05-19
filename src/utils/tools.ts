@@ -38,3 +38,10 @@ export function padDigits(number: number | string) {
   }
   return number;
 }
+
+export function sumValues(val: number[]) {
+  const sumItems = val.reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+  return sumItems;
+}
