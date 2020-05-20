@@ -54,13 +54,75 @@ describe('Reducer Search Pokemon', () => {
     );
   }, 3000);
 
+  it('Should be able to success request', async () => {
+    const dispatch = jest.fn();
+
+    const action = {
+      id: 2,
+      name: 'teste',
+      sprites: {
+        front_default: 'url',
+      },
+      types: [
+        {
+          slot: 33,
+          type: {
+            name: 'rock',
+            url: 'url',
+          },
+        },
+      ],
+      stats: undefined,
+      abilities: [
+        {
+          ability: {
+            name: 'name',
+          },
+        },
+      ],
+    };
+
+    apiMock.onGet('pokemon/2').reply(200, action);
+
+    const payloadSaga = {
+      payload: 2,
+    };
+
+    await runSaga({ dispatch }, searchPokes, payloadSaga).toPromise();
+
+    expect(dispatch).toHaveBeenCalledWith(
+      PokemonsActions.searchPokeSuccess({
+        id: 2,
+        name: 'teste',
+        img: 'url',
+        types: [
+          {
+            slot: 33,
+            type: {
+              name: 'rock',
+              url: 'url',
+            },
+          },
+        ],
+        stats: undefined,
+        abilities: [
+          {
+            ability: {
+              name: 'name',
+            },
+          },
+        ],
+      }),
+    );
+  });
+
   it('Should be able to failure request', async () => {
     const dispatch = jest.fn();
 
-    apiMock.onGet('/pokemon/2').reply(400, ['finalidade']);
+    apiMock.onGet('pokemon/2').reply(400, ['finalidade']);
 
-    await runSaga({ dispatch }, searchPokes).toPromise();
+    await runSaga({ dispatch }, getPokes).toPromise();
 
-    expect(dispatch).toHaveBeenCalledWith(PokemonsActions.searchPokeFailure());
+    expect(dispatch).toHaveBeenCalledWith(PokemonsActions.getPokesFailure());
   });
 });

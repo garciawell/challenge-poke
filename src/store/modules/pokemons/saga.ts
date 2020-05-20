@@ -39,7 +39,7 @@ export function* getPokes(action: any) {
 
 export function* searchPokes(action: any) {
   try {
-    const { data } = yield call(api.get, `/pokemon/${action.payload}`);
+    const { data } = yield call(api.get, `/pokemon/${action?.payload}`);
     yield delay(1000);
     yield put({
       type: PokeActionTypes.SEARCH_POKE_SUCCESS,
@@ -53,6 +53,7 @@ export function* searchPokes(action: any) {
       },
     });
   } catch (err) {
+    console.log('ERR222');
     yield put({
       type: PokeActionTypes.SEARCH_POKE_FAILURE,
     });
