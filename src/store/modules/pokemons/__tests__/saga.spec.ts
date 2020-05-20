@@ -24,18 +24,6 @@ describe('Reducer GET Pokemon', () => {
     );
   }, 3000);
 
-  it('Should be able to success request', async () => {
-    const dispatch = jest.fn();
-
-    mock.onGet('/pokemon?offset=2').reply(200);
-
-    await runSaga({ dispatch }, getPokes).toPromise();
-
-    const response = await instance.get('/pokemon?offset=2');
-
-    expect(response.status).toEqual(200);
-  }, 3000);
-
   it('Should be able to failure request', async () => {
     const dispatch = jest.fn();
 
@@ -121,8 +109,8 @@ describe('Reducer Search Pokemon', () => {
 
     apiMock.onGet('pokemon/2').reply(400, ['finalidade']);
 
-    await runSaga({ dispatch }, getPokes).toPromise();
+    await runSaga({ dispatch }, searchPokes).toPromise();
 
-    expect(dispatch).toHaveBeenCalledWith(PokemonsActions.getPokesFailure());
+    expect(dispatch).toHaveBeenCalledWith(PokemonsActions.searchPokeFailure());
   });
 });
