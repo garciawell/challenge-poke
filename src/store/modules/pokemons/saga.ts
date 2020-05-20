@@ -53,7 +53,6 @@ export function* searchPokes(action: any) {
       },
     });
   } catch (err) {
-    console.log('ERR222');
     yield put({
       type: PokeActionTypes.SEARCH_POKE_FAILURE,
     });
