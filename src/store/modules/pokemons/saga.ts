@@ -5,8 +5,8 @@ import api from '../../../services/api';
 import { PokeActionTypes } from './actions';
 import { IPokeModel } from './models';
 
-export function* getPokes({ payload }: any) {
-  const sumOffsetLimit = (payload - 1) * 20;
+export function* getPokes(action: any) {
+  const sumOffsetLimit = (action?.payload - 1) * 20;
 
   try {
     const { data } = yield call(api.get, `/pokemon?offset=${sumOffsetLimit}`);
@@ -37,9 +37,9 @@ export function* getPokes({ payload }: any) {
   }
 }
 
-export function* searchPokes({ payload }: any) {
+export function* searchPokes(action: any) {
   try {
-    const { data } = yield call(api.get, `/pokemon/${payload}`);
+    const { data } = yield call(api.get, `/pokemon/${action.payload}`);
     yield delay(1000);
     yield put({
       type: PokeActionTypes.SEARCH_POKE_SUCCESS,
